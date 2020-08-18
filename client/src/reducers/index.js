@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import tomoReducer from './tomoReducer';
+import reducer from './harmonyReducer';
 
 const rootReducer = combineReducers({
-  tomo: tomoReducer
+  harmony: reducer
 });
 
 export default rootReducer;

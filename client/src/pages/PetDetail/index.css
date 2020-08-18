@@ -1,0 +1,219 @@
+.growth_tracking,
+.fund_tracking {
+  margin: 5px;
+  width: 80%;
+}
+
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+  margin: 2%;
+}
+
+.RSPBprogressBar {
+  height: 10px;
+  line-height: 1;
+  border-radius: 10px;
+  position: relative;
+  background-color: rgba(211, 211, 211, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+  margin-top: 25px;
+}
+
+.RSPBprogressBar .RSPBstep {
+  display: inline-flex;
+  justify-content: left;
+  align-items: left;
+  z-index: 0;
+  position: absolute;
+  transform: translateX(-50%);
+  transition-property: all;
+  transition-timing-function: ease;
+}
+
+.RSPBprogressBar .RSPBprogressBarText {
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.RSPBprogressBar .RSPBprogression {
+  position: absolute;
+  transition: width 0.3s ease;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  background: rgba(0, 116, 217, 0.8);
+  z-index: -1;
+}
+form {
+  text-align: left;
+}
+.row {
+  margin-left: 0;
+  margin-right: 0;
+  align-self: auto;
+  padding: 0;
+}
+.bottom {
+  margin-top: 50px;
+  width: 100%;
+  position: relative;
+}
+button {
+  width: 100px;
+}
+view {
+  height: 100vh;
+}
+
+.fund-circle-tracking {
+  width: 100px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.fund-circle-tracking-info {
+  font-size: 8px;
+  margin-top: 2px;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: yellowgreen;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #d6d6d6;
+  /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+  stroke-linecap: round;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #3e98c7;
+  font-size: 20px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+  fill: #d6d6d6;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+  fill: #3e98c7;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+  fill: #fff;
+}
+.bottom {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+}
+button {
+  width: 100px;
+}
+view {
+  height: 100vh;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+  stroke: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+  stroke: transparent;
+}
+
+.CircularProgressbar {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.img-gif-tracking {
+  width: 35px;
+  float: left;
+  margin-right: 10px;
+}
+
+.z-index-1000 {
+  z-index: 1000;
+}
+
+.active-click {
+  background: #98e5f1;
+}
+
+.move-left,
+.move-right {
+  cursor: pointer;
+  line-height: 80px;
+}
+
+.circle-btn-home {
+  clip-path: circle(28%);
+  width: 12%;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  z-index: 100;
+  bottom: -45px;
+  background: #d8eef9;
+}
+
+@media (max-width: 576px) {
+  .img-gif-tracking {
+    width: 25px;
+    margin-right: 5px;
+  }
+  .RSPBprogressBar {
+    margin-top: 22px;
+  }
+  .fund-circle-tracking {
+    margin-top: 15px;
+    width: 65%;
+  }
+
+  .box {
+    height: 50px;
+  }
+
+  .move-left,
+  .move-right {
+    line-height: 50px;
+  }
+  .circle-btn-home {
+    width: 48%;
+  }
+}
+
+@media (min-width: 577px) {
+  .circle-btn-home {
+    width: 40%;
+  }
+}
+#box-canvas {
+  height: 100vh;
+  background: #edf9ff;
+  width: 540px;
+}
+.modal-dialog{
+  max-width: 600px !important;
+
+}

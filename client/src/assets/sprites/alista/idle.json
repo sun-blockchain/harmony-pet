@@ -1,0 +1,27 @@
+{
+
+"images": [
+    "idle-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 94, 125, 0, 44.9, 110.99],
+    [1, 128, 95, 123, 0, 45.38, 109.22],
+    [97, 1, 94, 124, 0, 44.9, 110.1],
+    [98, 127, 94, 124, 0, 44.9, 110.1]
+],
+
+"animations": {
+    "idle(2)": { "frames": [0] },
+    "idle(4)": { "frames": [1] },
+    "idle(1)": { "frames": [2] },
+    "idle(3)": { "frames": [3] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:06139c1000036a876c20aa6a8e25a123:9914058dc986ee2262ae7cfc95c4ed5b:3b4ef63e6473213b3dbb2dee2be15958$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

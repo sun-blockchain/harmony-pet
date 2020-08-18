@@ -1,0 +1,35 @@
+{
+
+"images": [
+    "walk-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 238, 209, 0, 119, 209],
+    [1, 212, 239, 205, 0, 119.5, 205],
+    [241, 1, 238, 208, 0, 119, 208],
+    [242, 211, 233, 206, 0, 116.5, 206],
+    [477, 211, 223, 206, 0, 111.5, 206],
+    [481, 1, 234, 208, 0, 117, 208],
+    [717, 1, 228, 204, 0, 114, 204],
+    [702, 211, 239, 202, 0, 119.5, 202]
+],
+
+"animations": {
+    "walk(2)": { "frames": [0] },
+    "walk(6)": { "frames": [1] },
+    "walk(7)": { "frames": [2] },
+    "walk(3)": { "frames": [3] },
+    "walk(5)": { "frames": [4] },
+    "walk(1)": { "frames": [5] },
+    "walk(4)": { "frames": [6] },
+    "walk(8)": { "frames": [7] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:4cd17f1cd4dff3c522485cec09dadf87:c099e909e9adfbc9666b5f01c02ecbe8:06c729ad2c8dfa192a3f7d3cf901c086$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

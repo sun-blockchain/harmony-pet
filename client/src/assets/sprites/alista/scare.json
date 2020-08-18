@@ -1,0 +1,25 @@
+{
+
+"images": [
+    "scare-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 135, 133, 0, 62, 118],
+    [138, 1, 130, 129, 0, 65, 115],
+    [270, 1, 108, 124, 0, 45, 111]
+],
+
+"animations": {
+    "dead(1)": { "frames": [0] },
+    "dead(2)": { "frames": [1] },
+    "dead(3)": { "frames": [2] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:5b20ee14afe9e63d74e32e6c5c5768f4:9d9370f276d6bd070fbd8eaa3db13cc0:f0236efe52c3c5ff6f8bd41ef0bbe0ec$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

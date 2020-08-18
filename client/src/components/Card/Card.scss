@@ -1,0 +1,171 @@
+.card {
+  transition: all 0.5s;
+}
+.card-item {
+  width: 100%;
+  margin-bottom: 3em;
+  padding-top: 5em;
+}
+.card-header {
+  padding: 0;
+  z-index: 1;
+  position: relative;
+  margin-top: -30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 8px;
+}
+.card-header img {
+  width: 100%;
+  height: 300px;
+  box-shadow: -3px -3px 3px 0 rgba(#26e6f7, 0.6), 3px 3px 3px 0 rgba(#f759e4, 0.6),
+    0 0 6px 2px rgba(#ffe759, 0.6), 0 35px 25px -15px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 1;
+  border-style: none;
+}
+.maincard:hover {
+  border: solid pink;
+  transform: scale(1.1);
+}
+
+.card-header:before,
+.card-header:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgb(0, 231, 255) 30%,
+    rgb(255, 0, 231) 70%,
+    transparent 100%
+  );
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  animation: holoGradient 15s ease infinite;
+}
+.card-header:after {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif');
+  background-position: center;
+  background-size: 180%;
+  border-radius: 8px;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 2;
+  animation: holoSparkle 20s ease infinite;
+}
+
+.card-header.active:before {
+  opacity: 0.5;
+  animation: none;
+  transition: none;
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 25%,
+    rgb(0, 231, 255) 45%,
+    rgb(255, 0, 231) 55%,
+    transparent 70%,
+    transparent 100%
+  );
+}
+
+@keyframes holoSparkle {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  95% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes holoGradient {
+  3% {
+    opacity: 0;
+  }
+  5% {
+    background-position: 0% 0%;
+  }
+  7% {
+    opacity: 0.5;
+  }
+  9% {
+    background-position: 100% 100%;
+  }
+  11% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    background-position: 100% 100%;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  70% {
+    opacity: 0;
+    background-position: 0% 0%;
+  }
+}
+.operator {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 45px;
+}
+
+.progress {
+  height: 25px;
+  margin-top: 20px;
+  background-color: #8a9aab;
+}
+
+.carousel-padding {
+  padding-top: 3em;
+}
+.slick-dots {
+  z-index: 1000;
+  padding-bottom: 1em !important;
+}
+
+@media (max-width: 576px) and (height: 568px) {
+  .item-img-new {
+    height: 170px !important;
+  }
+  .item-img {
+    height: 40vh !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-header img {
+    height: 270px;
+  }
+
+  .item-img {
+    height: 270px;
+  }
+
+  .card-item {
+    padding-top: 2.5em;
+  }
+
+  .progress {
+    margin-top: 18px;
+  }
+}

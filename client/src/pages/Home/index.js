@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div className='home'>
-        {this.props.tomo.web3 && this.props.pets ? <PetDeck /> : <Loading />}
+        {this.props.harmony.web3 && this.props.pets ? <PetDeck /> : <Loading />}
       </div>
     );
   }
@@ -15,8 +15,8 @@ class Home extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    tomo: state.tomo,
-    pets: state.tomo.pets
+    harmony: state.harmony,
+    pets: state.harmony.pets
   };
 };
 

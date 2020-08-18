@@ -3,20 +3,25 @@ import * as actions from '../actions';
 const initialState = {
   web3: null,
   account: null,
+  mathWallet: null,
   balance: 0,
   pets: null,
   petsAddress: null,
   factory: null
 };
 
-const tomoReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.WEB3_CONNECT:
+    case actions.SIGN_IN_WALLET:
       return {
         ...state,
-        web3: action.web3,
         account: action.account,
-        balance: action.balance
+        mathWallet: action.mathWallet
+      };
+    case actions.SIGN_OUT:
+      return {
+        ...state,
+        account: action.account
       };
     case actions.INSTANTIATE_CONTRACT:
       return {
@@ -43,4 +48,4 @@ const tomoReducer = (state = initialState, action) => {
   }
 };
 
-export default tomoReducer;
+export default reducer;

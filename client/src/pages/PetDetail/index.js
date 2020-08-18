@@ -46,11 +46,6 @@ class PetDetail extends Component {
 
   async componentDidMount() {
     if (!window.web3) return;
-    if (window.web3.currentProvider.isMetaMask) {
-      await store.dispatch(actions.web3Connect());
-    } else if (window.web3.currentProvider.isTomoWallet) {
-      await store.dispatch(actions.web3TomoWalletConnect());
-    }
     await store.dispatch(actions.getAllPetsAddress());
     let petAddress;
     if (this.props.match.params.index) {

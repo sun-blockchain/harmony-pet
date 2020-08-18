@@ -7,10 +7,10 @@
     "glamor": "^2.20.40",
     "node-sass": "^4.12.0",
     "qrcode.react": "^0.9.3",
-    "react": "^16.8.6",
+    "react": "^16.12.0",
     "react-circular-progressbar": "^2.0.2",
     "react-dom": "^16.8.6",
-    "react-redux": "^5.1.1",
+    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-slick": "^0.25.2",
@@ -21,7 +21,8 @@
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
     "thunk": "^0.0.1",
-    "web3": "1.0.0-beta.35"
+    "web3": "1.0.0-beta.35",
+    "@harmony-js/core": "^0.1.46"
   },
   "scripts": {
     "start": "react-scripts start",

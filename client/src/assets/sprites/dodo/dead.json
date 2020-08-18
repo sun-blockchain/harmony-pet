@@ -1,0 +1,43 @@
+{
+
+"images": [
+    "dead-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 264, 222, 0, 132, 222],
+    [267, 1, 235, 208, 0, 117.5, 208],
+    [267, 211, 176, 112, 0, 88, 112],
+    [1, 225, 264, 202, 0, 132, 202],
+    [267, 325, 174, 118, 0, 87, 118],
+    [1, 429, 264, 191, 0, 132, 191],
+    [267, 445, 166, 119, 0, 83, 119],
+    [267, 566, 156, 118, 0, 78, 118],
+    [1, 622, 264, 188, 0, 132, 188],
+    [1, 812, 263, 196, 0, 131.5, 196],
+    [266, 812, 151, 128, 0, 75.5, 128],
+    [267, 686, 147, 119, 0, 73.5, 119]
+],
+
+"animations": {
+    "dead(6)": { "frames": [0] },
+    "dead(1)": { "frames": [1] },
+    "dead(12)": { "frames": [2] },
+    "dead(5)": { "frames": [3] },
+    "dead(11)": { "frames": [4] },
+    "dead(3)": { "frames": [5] },
+    "dead(10)": { "frames": [6] },
+    "dead(9)": { "frames": [7] },
+    "dead(2)": { "frames": [8] },
+    "dead(4)": { "frames": [9] },
+    "dead(7)": { "frames": [10] },
+    "dead(8)": { "frames": [11] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:365983339fa25df73c1c5e3c897e2cac:d0f8b07e89666e3f5521b07f4e7759c7:9c4cb09890b209de656dfbab9f485f37$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

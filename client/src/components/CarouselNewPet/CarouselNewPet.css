@@ -1,0 +1,13 @@
+.slide-modal .slick-next {
+  right: 0px;
+}
+
+.slide-modal .slick-prev {
+  left: 0px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #635a5a;
+  font-size: 25px;
+}

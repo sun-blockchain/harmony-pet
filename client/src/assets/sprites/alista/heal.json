@@ -1,0 +1,43 @@
+{
+
+"images": [
+    "heal-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 215, 133, 0, 108, 112],
+    [218, 1, 190, 171, 0, 95, 148],
+    [410, 1, 95, 123, 0, 45.38, 109.22],
+    [1, 136, 187, 130, 0, 89, 111],
+    [190, 174, 184, 132, 0, 93, 113],
+    [376, 174, 131, 129, 0, 66, 111],
+    [1, 268, 182, 168, 0, 87, 146],
+    [376, 305, 128, 136, 0, 65, 115],
+    [185, 308, 180, 166, 0, 90, 142],
+    [1, 438, 177, 168, 0, 83, 148],
+    [367, 443, 126, 138, 0, 58, 117],
+    [180, 476, 163, 160, 0, 78, 132]
+],
+
+"animations": {
+    "heal(1)": { "frames": [0] },
+    "heal(7)": { "frames": [1] },
+    "heal(12)": { "frames": [2] },
+    "heal(10)": { "frames": [3] },
+    "heal(2)": { "frames": [4] },
+    "heal(11)": { "frames": [5] },
+    "heal(9)": { "frames": [6] },
+    "heal(3)": { "frames": [7] },
+    "heal(6)": { "frames": [8] },
+    "heal(8)": { "frames": [9] },
+    "heal(4)": { "frames": [10] },
+    "heal(5)": { "frames": [11] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:1d68a3c628253e145eb6e17ae8eefed6:55a90041e316e173918d6c645a0fece5:1f7a7c43eadb8e069b067604b94baf51$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

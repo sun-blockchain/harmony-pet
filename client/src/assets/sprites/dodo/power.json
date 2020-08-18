@@ -1,0 +1,45 @@
+{
+
+"images": [
+    "power.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 268, 198, 0, 122, 156],
+    [271, 1, 258, 202, 0, 113, 152],
+    [531, 1, 237, 202, 0, 109, 144],
+    [770, 1, 236, 204, 0, 107, 145],
+    [1008, 1, 262, 211, 0, 119, 153],
+    [1272, 1, 254, 212, 0, 116, 153],
+    [1528, 1, 265, 215, 0, 119, 157],
+    [1, 205, 270, 221, 0, 124, 160],
+    [273, 205, 273, 223, 0, 125, 160],
+    [548, 207, 275, 226, 0, 128, 164],
+    [825, 214, 274, 234, 0, 126, 163],
+    [1101, 215, 276, 236, 0, 127, 163],
+    [1379, 218, 278, 239, 0, 130, 163]
+],
+
+"animations": {
+    "power(12)": { "frames": [0] },
+    "power(13)": { "frames": [1] },
+    "power(2)": { "frames": [2] },
+    "power(1)": { "frames": [3] },
+    "power(4)": { "frames": [4] },
+    "power(3)": { "frames": [5] },
+    "power(5)": { "frames": [6] },
+    "power(6)": { "frames": [7] },
+    "power(7)": { "frames": [8] },
+    "power(8)": { "frames": [9] },
+    "power(11)": { "frames": [10] },
+    "power(10)": { "frames": [11] },
+    "power(9)": { "frames": [12] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:b8fb25ebecb902fe4b3342f8f4414260:ccef2d3c03d2436f5908d317b4e5d6b9:2ba96ed0813974f2d148f1a6a1685809$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

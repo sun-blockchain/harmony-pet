@@ -1,0 +1,49 @@
+{
+
+"images": [
+    "attack.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 315, 230, 0, 177, 157],
+    [318, 1, 326, 220, 0, 188, 153],
+    [646, 1, 258, 206, 0, 124, 149],
+    [646, 209, 244, 212, 0, 114, 145],
+    [318, 223, 310, 228, 0, 181, 156],
+    [630, 423, 303, 225, 0, 179, 153],
+    [1, 233, 314, 207, 0, 179, 151],
+    [1, 442, 300, 212, 0, 163, 161],
+    [303, 453, 298, 213, 0, 162, 157],
+    [1, 656, 296, 213, 0, 156, 154],
+    [603, 650, 307, 206, 0, 172, 154],
+    [299, 668, 300, 210, 0, 164, 156],
+    [1, 871, 293, 213, 0, 157, 154],
+    [601, 858, 236, 208, 0, 109, 146],
+    [296, 880, 236, 205, 0, 107, 143]
+],
+
+"animations": {
+    "attack(9)": { "frames": [0] },
+    "attack(12)": { "frames": [1] },
+    "attack(2)": { "frames": [2] },
+    "attack(13)": { "frames": [3] },
+    "attack(10)": { "frames": [4] },
+    "attack(11)": { "frames": [5] },
+    "attack(3)": { "frames": [6] },
+    "attack(5)": { "frames": [7] },
+    "attack(4)": { "frames": [8] },
+    "attack(6)": { "frames": [9] },
+    "attack(3.1)": { "frames": [10] },
+    "attack(7)": { "frames": [11] },
+    "attack(8)": { "frames": [12] },
+    "attack(14)": { "frames": [13] },
+    "attack(1)": { "frames": [14] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:0421738d3d6c459d4599a3b1469afcf6:60759eb1687f3901a5d9c06ec1dbe24f:c558c2d9773adf0f4ef6f0e9687f205f$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

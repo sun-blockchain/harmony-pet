@@ -1,0 +1,45 @@
+{
+
+"images": [
+    "light.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 268, 269, 0, 131, 203],
+    [1, 272, 252, 228, 0, 115, 157],
+    [255, 272, 243, 210, 0, 111, 149],
+    [271, 1, 261, 269, 0, 119, 195],
+    [500, 272, 234, 208, 0, 106, 142],
+    [534, 1, 260, 265, 0, 122, 199],
+    [736, 268, 257, 231, 0, 118, 160],
+    [796, 1, 268, 262, 0, 134, 198],
+    [995, 265, 264, 235, 0, 119, 161],
+    [1066, 1, 258, 245, 0, 121, 169],
+    [1261, 248, 261, 239, 0, 125, 165],
+    [1326, 1, 259, 233, 0, 120, 166],
+    [1524, 236, 256, 230, 0, 117, 163]
+],
+
+"animations": {
+    "light(12)": { "frames": [0] },
+    "light(3)": { "frames": [1] },
+    "light(2)": { "frames": [2] },
+    "light(10)": { "frames": [3] },
+    "light(1)": { "frames": [4] },
+    "light(11)": { "frames": [5] },
+    "light(4)": { "frames": [6] },
+    "light(13)": { "frames": [7] },
+    "light(6)": { "frames": [8] },
+    "light(9)": { "frames": [9] },
+    "light(7)": { "frames": [10] },
+    "light(8)": { "frames": [11] },
+    "light(5)": { "frames": [12] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:6c2e14cd0ac290fbf003ea0dd588a2c1:8e2b2f4ea28bfb5d20f8c35b1097861a:667de6b72f41f892496969469aea341b$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

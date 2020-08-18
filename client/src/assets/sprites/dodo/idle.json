@@ -1,0 +1,35 @@
+{
+
+"images": [
+    "idle-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 243, 208, 0, 121.5, 208],
+    [1, 211, 238, 208, 0, 119, 208],
+    [241, 211, 238, 208, 0, 119, 208],
+    [246, 1, 236, 208, 0, 118, 208],
+    [481, 211, 236, 208, 0, 118, 208],
+    [484, 1, 235, 208, 0, 117.5, 208],
+    [719, 211, 234, 209, 0, 117, 209],
+    [721, 1, 235, 208, 0, 117.5, 208]
+],
+
+"animations": {
+    "idle(5)": { "frames": [0] },
+    "idle(3)": { "frames": [1] },
+    "idle(6)": { "frames": [2] },
+    "idle(2)": { "frames": [3] },
+    "idle(4)": { "frames": [4] },
+    "idle(1)": { "frames": [5] },
+    "idle(8)": { "frames": [6] },
+    "idle(7)": { "frames": [7] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:61f0e96a7ed4fcb1e9fa530f161ba3be:941adb2333cf020f563c9d2d11cd84a4:3b4ef63e6473213b3dbb2dee2be15958$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

@@ -1,0 +1,38 @@
+.modal-dialog {
+  height: 800px;
+  max-width: 1000px;
+}
+.card-deck {
+  /* position: relative;
+    margin: auto;
+    width: 960px;
+    height: 535px; */
+  padding-top: 3em;
+}
+.card-item {
+  width: 65%;
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+
+.card-item-new {
+  width: 40%;
+}
+
+.create-form {
+  width: 100%;
+  float: left;
+}
+
+@media (max-width: 576px) {
+  .card-item {
+    width: 70%;
+  }
+
+  .card-item-new {
+    width: 80%;
+  }
+  .card-item-new .card-footer {
+    font-size: 0.75em;
+  }
+}

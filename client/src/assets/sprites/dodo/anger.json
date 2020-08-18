@@ -1,0 +1,47 @@
+{
+
+"images": [
+    "anger.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 311, 230, 0, 173, 222],
+    [1, 233, 257, 224, 0, 128.5, 224],
+    [260, 233, 257, 222, 0, 128.5, 222],
+    [314, 1, 260, 229, 0, 130, 229],
+    [519, 232, 299, 227, 0, 170, 220],
+    [576, 1, 260, 229, 0, 130, 229],
+    [820, 232, 258, 227, 0, 129, 227],
+    [838, 1, 247, 218, 0, 123.5, 218],
+    [1080, 221, 250, 217, 0, 125, 217],
+    [1087, 1, 235, 208, 0, 117.5, 208],
+    [1087, 1, 235, 208, 0, 117.5, 208],
+    [1087, 1, 235, 208, 0, 117.5, 208],
+    [1324, 1, 253, 205, 0, 126.5, 205],
+    [1332, 208, 241, 192, 0, 120.5, 192]
+],
+
+"animations": {
+    "anger(8)": { "frames": [0] },
+    "anger(5)": { "frames": [1] },
+    "anger(6)": { "frames": [2] },
+    "anger(2)": { "frames": [3] },
+    "anger(9)": { "frames": [4] },
+    "anger(3)": { "frames": [5] },
+    "anger(4)": { "frames": [6] },
+    "anger(10)": { "frames": [7] },
+    "anger(7)": { "frames": [8] },
+    "anger(1)": { "frames": [9] },
+    "anger(13)": { "frames": [10] },
+    "dead(1)": { "frames": [11] },
+    "anger(11)": { "frames": [12] },
+    "anger(12)": { "frames": [13] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:59c2b8934c88ca12fea610e94e790218:c91d9ce8f42d704271f3003ce3ad5318:c7d9d2e5dc45bee565e17584d524a44d$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

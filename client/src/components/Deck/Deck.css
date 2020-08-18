@@ -1,0 +1,237 @@
+.card-deck-container {
+  margin: auto;
+  padding-top: 10%;
+}
+
+.container-custom {
+  width: 540px;
+  margin: 0 auto;
+  height: 100vh;
+  background: #edf9ff;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%24fff' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%24fff' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e");
+}
+
+/* Css button create pet */
+.pushme {
+  position: relative;
+  font-weight: 700;
+  background-color: #384d9d;
+  border-radius: 50%;
+  display: inline-block;
+  /* margin: 1em 1em 0 1em; */
+}
+.pushme .inner {
+  display: inline-block;
+  background-color: #f6f3eb;
+  border-radius: 50%;
+  border: 0.3em solid #384d9d;
+  padding: 1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  user-select: none;
+  transform: translate3d(0.15em, -0.4em, 0);
+  transition: transform 240ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 220ms;
+}
+.pushme:active .inner,
+.pushme.click .inner {
+  transform: translate3d(0, 0, 0);
+  transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.pushme:hover .inner {
+  border: 0.3em solid #061f7b;
+}
+.pushme:hover {
+  background-color: #061f7b;
+}
+
+.sig {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.4);
+}
+/* End css button create pet  */
+
+.card-create-pet {
+  margin-top: 5em;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.header-create {
+  margin-bottom: 1em;
+  border-radius: 0 0 100% 60%;
+  /* background-image: linear-gradient(177deg, #70b96d, #24b51f); */
+  padding-bottom: 0.5em;
+  padding-top: 1em;
+  color: black;
+}
+
+.infor-pet {
+  text-align: left;
+  padding-left: 0;
+}
+
+.infor-wallet {
+  font-size: 2.2em;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-arrow {
+  z-index: 1000;
+}
+
+.account-address {
+  overflow-wrap: break-word;
+}
+
+.account-address:active {
+  cursor: pointer;
+  background-color: #dfd6d5;
+  border-radius: 5px;
+}
+
+.account-address:hover {
+  cursor: pointer;
+  background-color: #dfd6d5;
+  border-radius: 5px;
+}
+
+.account-balance {
+  /* padding-left: px; */
+  display: inline;
+}
+
+.account-avatar {
+  border-radius: 50%;
+  display: inline;
+  right: 0%;
+}
+
+.logo {
+  display: inline;
+}
+
+.balance {
+  width: 80px;
+  padding-top: 2%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.avatar {
+  padding-top: 2%;
+}
+
+/* Bar menu bottom dạng mobile  */
+
+.box {
+  height: 75px;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.move-left {
+  width: 50%;
+  border-right: 3px solid #d8eef9;
+  height: 80px;
+}
+.move-right {
+  width: 50%;
+}
+/* end */
+
+.circle-btn-create {
+  clip-path: circle(28%);
+  width: 40%;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  z-index: 100;
+  bottom: -45px;
+  background: #d8eef9;
+}
+
+.bottom-mobile {
+  position: fixed;
+  bottom: 0;
+  width: 540px;
+}
+
+@media (max-width: 576px) {
+  .container-custom {
+    width: 100%;
+    margin: 0 auto;
+    background: #edf9ff;
+  }
+
+  .card-header img {
+    height: 41vh;
+  }
+
+  .card-header-default-card img {
+    height: 41vh;
+  }
+
+  .progress {
+    height: 20px;
+  }
+
+  .card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem 1rem 1rem 1rem;
+  }
+
+  .gif-load {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .infor-wallet {
+    font-size: 1.8em;
+  }
+
+  .pushme .inner {
+    padding: 0.7em;
+  }
+  .circle-btn-create {
+    clip-path: circle(33%);
+  }
+
+  .box,
+  .move-left {
+    height: 80px;
+  }
+
+  .bottom-mobile {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 10px;
+    background: #edf9ff;
+  }
+}

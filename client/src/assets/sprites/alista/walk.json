@@ -1,0 +1,27 @@
+{
+
+"images": [
+    "walk-0.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 96, 125, 0, 45.86, 110.99],
+    [99, 1, 106, 124, 0, 50.64, 110.1],
+    [207, 1, 100, 123, 0, 47.77, 109.22],
+    [309, 1, 95, 123, 0, 45.38, 109.22]
+],
+
+"animations": {
+    "walk(2)": { "frames": [0] },
+    "walk(4)": { "frames": [1] },
+    "walk(3)": { "frames": [2] },
+    "walk(1)": { "frames": [3] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:b0379e5cb2242defe9c2d6ec68b866d1:5e77c86b30cc1f5fc44eba65d562feb9:06c729ad2c8dfa192a3f7d3cf901c086$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div className='home'>
-        {this.props.harmony.web3 && this.props.pets ? <PetDeck /> : <Loading />}
+        {this.props.harmony.account && this.props.pets ? <PetDeck /> : <Loading />}
       </div>
     );
   }

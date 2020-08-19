@@ -1,18 +1,48 @@
-// import Factory from 'contracts/PetWalletFactory.json';
+import Factory from 'contracts/PetWalletFactory.json';
 // import petWallet from 'contracts/PetWallet.json';
+import { Harmony } from '@harmony-js/core';
+import { ChainID, ChainType } from '@harmony-js/utils';
+
+const GAS_LIMIT = 103802;
+const GAS_PRICE = 1000000000;
+const options = {
+  gasPrice: GAS_PRICE,
+  gasLimit: GAS_LIMIT
+};
+const hmy = new Harmony('https://api.s0.b.hmny.io', {
+  chainType: ChainType.Harmony,
+  chainId: ChainID.HmyTestnet
+});
+
+export const loadWallet = () => async (dispatch) => {
+  let mathwallet = window.harmony;
+  const session = localStorage.getItem('harmony_session');
+  const sessionObj = JSON.parse(session);
+  if (sessionObj && sessionObj.address) {
+    await dispatch({
+      type: SIGN_IN_WALLET,
+      account: sessionObj.address,
+      mathwallet
+    });
+    await dispatch(instantiateContracts());
+    await dispatch(getAllPets());
+  }
+};
 
 export const SIGN_IN_WALLET = 'SIGN_IN_WALLET';
 export const signInWallet = () => async (dispatch) => {
   let isMathWallet = window.harmony && window.harmony.isMathWallet;
   if (isMathWallet) {
     let mathwallet = window.harmony;
-    mathwallet.getAccount().then((account) => {
+    mathwallet.getAccount().then(async (account) => {
       dispatch({
         type: SIGN_IN_WALLET,
         account,
         mathwallet
       });
       syncLocalStorage(account, 'mathWallet');
+      await dispatch(instantiateContracts());
+      await dispatch(getAllPets());
     });
   }
 };
@@ -43,27 +73,23 @@ let syncLocalStorage = (address, sessionType) => {
 };
 
 export const INSTANTIATE_CONTRACT = 'INSTANTIATE_CONTRACT';
-export const instantiateContracts = () => async (dispatch, getState) => {
-  // const state = getState();
-  // let web3 = state.tomo.web3;
-  // const networkId = process.env.REACT_APP_TOMO_ID;
-  // let factoryAddress = Factory.networks[networkId].address;
-  // let factory = new web3.eth.Contract(Factory.abi, factoryAddress, {
-  //   transactionConfirmationBlocks: 1
-  // });
-  // dispatch({
-  //   type: INSTANTIATE_CONTRACT,
-  //   factory
-  // });
+export const instantiateContracts = () => async (dispatch) => {
+  let factoryAddress = Factory.networks[2].address;
+  let factory = hmy.contracts.createContract(Factory.abi, factoryAddress);
+  dispatch({
+    type: INSTANTIATE_CONTRACT,
+    factory
+  });
 };
 
 export const GET_ALL_PETS = 'GET_ALL_PETS';
 export const getAllPets = () => async (dispatch, getState) => {
-  // const state = getState();
-  // let web3 = state.tomo.web3;
-  // const factory = state.tomo.factory;
-  // const account = state.tomo.account;
-  // let petArray = await factory.methods.getAllPetAddressOf(account).call({ from: account });
+  const state = getState();
+  const factory = state.harmony.factory;
+  const account = state.harmony.account;
+  let petArray = await factory.methods
+    .getAllPetAddressOf(hmy.crypto.getAddress(account.address).checksum)
+    .call(options);
   // const pets = [];
   // for (let i = 0; i < petArray.length; i++) {
   //   let pet = {
@@ -88,10 +114,10 @@ export const getAllPets = () => async (dispatch, getState) => {
   //   pet.address = petArray[i];
   //   pets.push(pet);
   // }
-  // dispatch({
-  //   type: GET_ALL_PETS,
-  //   pets
-  // });
+  dispatch({
+    type: GET_ALL_PETS,
+    pets: petArray
+  });
 };
 export const GET_ALL_PETS_ADDRESS = 'GET_ALL_PETS_ADDRESS';
 export const getAllPetsAddress = () => async (dispatch, getState) => {

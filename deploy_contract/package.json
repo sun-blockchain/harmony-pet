@@ -1,0 +1,13 @@
+{
+  "name": "soccerplayers.app",
+  "version": "1.0.0",
+  "description": "Harmony soccerplayers.app",
+  "main": "truffle.js",
+  "dependencies": {
+    "@harmony-js/core": "^0.1.52",
+    "dotenv": "^8.2.0",
+    "openzeppelin-solidity": "^2.2.0",
+    "solc": "^0.5.8",
+    "tslib": "^1.13.0"
+  }
+}

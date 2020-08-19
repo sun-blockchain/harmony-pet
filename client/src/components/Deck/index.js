@@ -121,10 +121,10 @@ class PetDeck extends React.Component {
 }
 const mapStatetoProps = (state) => {
   return {
-    pets: state.tomo.pets,
-    petsAddress: state.tomo.petsAddress,
-    account: state.tomo.account,
-    balance: state.tomo.balance
+    pets: state.harmony.pets,
+    petsAddress: state.harmony.petsAddress,
+    account: state.harmony.account,
+    balance: state.harmony.balance
   };
 };
 export default compose(connect(mapStatetoProps))(PetDeck);

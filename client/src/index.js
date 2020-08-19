@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store';
+import * as actions from './actions';
 
 const appRoot = document.getElementById('root');
 ReactDOM.render(
@@ -14,5 +15,9 @@ ReactDOM.render(
   </Provider>,
   appRoot
 );
+
+window.addEventListener('load', async () => {
+  store.dispatch(actions.loadWallet());
+});
 
 serviceWorker.unregister();

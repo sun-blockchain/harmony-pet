@@ -24,7 +24,8 @@
     "slick-carousel": "^1.8.1",
     "thunk": "^0.0.1",
     "tslib": "^2.0.1",
-    "web3": "1.0.0-beta.35"
+    "web3": "1.0.0-beta.35",
+    "createjs-module": "^0.8.3"
   },
   "scripts": {
     "start": "react-scripts start",

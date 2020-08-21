@@ -6,16 +6,13 @@ import 'components/Deck/Deck.css';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import AccountModal from 'components/AccountModal';
-import FeedPetModal from 'components/FeedModal';
 
 class PetDeck extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpenNewPet: false,
-      isOpenAccount: false,
-      isOpenSwapToken: false,
-      swapButton: false
+      isOpenAccount: false
     };
   }
 
@@ -30,23 +27,10 @@ class PetDeck extends React.Component {
       isOpenAccount: !this.state.isOpenAccount
     });
   };
-  toggle = () => {
-    this.setState({
-      swapButton: !this.state.swapButton,
-      isOpenSwapToken: !this.state.isOpenSwapToken
-    });
-  };
 
   render() {
     return (
       <div className='container-custom'>
-        <div>
-          <FeedPetModal
-            isOpen={this.state.isOpenSwapToken}
-            toggle={this.toggle}
-            feedPet={this.feedPet}
-          />
-        </div>
         <AccountModal
           isOpen={this.state.isOpenAccount}
           toggle={this.toggleAccount}
@@ -92,20 +76,7 @@ class PetDeck extends React.Component {
                   </span>
                 </div>
                 <div className='box'>
-                  <div className='icons row'>
-                    <div
-                      className={(this.state.left ? 'active-click' : '') + ' move-left'}
-                      onClick={this.handleFeedClick}
-                    >
-                      <img alt='feed' src={require('assets/img/plus-math.png')} />
-                    </div>
-                    <div
-                      className={(this.state.swapButton ? 'active-click' : '') + ' move-right'}
-                      onClick={this.toggle}
-                    >
-                      <img alt='withDraw' src={require('assets/img/eth.png')} width='32' />
-                    </div>
-                  </div>
+                  <div className='icons row'></div>
                 </div>
               </div>
             </div>

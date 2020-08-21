@@ -126,23 +126,29 @@ class PetDetail extends Component {
 
   feedPet = async (value) => {
     let PetInstance = this.state.petInstance;
-    await PetInstance.methods
-      .savingMoney(value)
-      .send({ from: this.props.tomo.account, value: value * 10 ** 18 })
-      .on('transactionHash', (hash) => {
-        this.setState({
-          action: PetAction.FEED
+    try {
+      PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(this.props.account.address).checksum;
+      PetInstance.wallet.signTransaction = async (tx) => {
+        try {
+          tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
+          const signTx = await window.harmony.signTransaction(tx);
+          return signTx;
+        } catch (e) {
+          console.error(e);
+        }
+      };
+      await PetInstance.methods
+        .savingMoney(value)
+        .send({ ...options, value: value * 10 ** 18 })
+        .then(() => {
+          this.setState({
+            action: PetAction.FEED
+          });
+          this.action();
         });
-        this.action();
-      })
-      .on('receipt', (receipt) => {
-        this.getPetInfo();
-      })
-      .on('error', () => {
-        alert('Transaction failed');
-        this.setState({ action: PetAction.DEFAULT });
-        this.action();
-      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   withDraw = async (value) => {
@@ -326,7 +332,8 @@ class PetDetail extends Component {
 const mapStateToProps = (state) => {
   return {
     harmony: state.harmony,
-    petsAddress: state.harmony.petsAddress
+    petsAddress: state.harmony.petsAddress,
+    account: state.harmony.account
   };
 };
 

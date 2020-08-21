@@ -134,7 +134,7 @@ class PetDetail extends Component {
           const signTx = await window.harmony.signTransaction(tx);
           return signTx;
         } catch (e) {
-          console.error(e);
+          console.log(e);
         }
       };
       await PetInstance.methods

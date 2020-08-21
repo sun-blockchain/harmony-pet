@@ -20,13 +20,13 @@ import { Harmony } from '@harmony-js/core';
 import { ChainID, ChainType } from '@harmony-js/utils';
 const hmy = new Harmony('https://api.s0.b.hmny.io', {
   chainType: ChainType.Harmony,
-  chainId: ChainID.HmyTestnet
+  chainId: ChainID.HmyTestnet,
 });
 const GAS_LIMIT = 6721900;
 const GAS_PRICE = 1000000000;
 const options = {
   gasPrice: GAS_PRICE,
-  gasLimit: GAS_LIMIT
+  gasLimit: GAS_LIMIT,
 };
 
 class PetDetail extends Component {
@@ -47,7 +47,7 @@ class PetDetail extends Component {
       yCoordinate: (window.innerHeight * 2) / 3,
       feed: true,
       feedButtonColor: 'success',
-      withDrawButtonColor: 'secondary'
+      withDrawButtonColor: 'secondary',
     };
     this.canvas = React.createRef();
     this.tick = this.tick.bind(this);
@@ -73,7 +73,7 @@ class PetDetail extends Component {
     this.setState({
       petInstance: PetInstance,
       xCoordinate: divcanvas.clientWidth / 2,
-      yCoordinate: (divcanvas.clientHeight * 2) / 3 - 100
+      yCoordinate: (divcanvas.clientHeight * 2) / 3 - 100,
     });
     this.getPetInfo();
   }
@@ -88,7 +88,7 @@ class PetDetail extends Component {
       parseInt(petInfo[2]),
       parseInt(petInfo[3]),
       parseInt(petInfo[4]),
-      petInfo[5]
+      petInfo[5],
     ];
     this.setState({ type, providentFund, growthTime, targetFund, duration });
     this.getProgress();
@@ -102,12 +102,12 @@ class PetDetail extends Component {
     for (let element of progressArray) {
       if (progress < element.milestone) {
         this.setState({
-          progress: element.index - 1
+          progress: element.index - 1,
         });
         return;
       }
       this.setState({
-        progress: progressArray.length - 1
+        progress: progressArray.length - 1,
       });
     }
   }
@@ -118,44 +118,48 @@ class PetDetail extends Component {
     for (let element of sizeArray) {
       if (size >= element.milestone) {
         this.setState({
-          scale: element.scale
+          scale: element.scale,
         });
       }
     }
   }
 
-  feedPet = async (value) => {
-    let PetInstance = this.state.petInstance;
-    await PetInstance.methods
-      .savingMoney(value)
-      .send({ from: this.props.tomo.account, value: value * 10 ** 18 })
-      .on('transactionHash', (hash) => {
-        this.setState({
-          action: PetAction.FEED
-        });
-        this.action();
-      })
-      .on('receipt', (receipt) => {
-        this.getPetInfo();
-      })
-      .on('error', () => {
-        alert('Transaction failed');
-        this.setState({ action: PetAction.DEFAULT });
-        this.action();
-      });
+  feedPet = async value => {
+    // let PetInstance = this.state.petInstance;
+    // await PetInstance.methods
+    //   .savingMoney(value)
+    //   .send({ from: this.props.tomo.account, value: value * 10 ** 18 })
+    //   .on('transactionHash', hash => {
+    //     this.setState({
+    //       action: PetAction.FEED,
+    //     });
+    //     this.action();
+    //   })
+    //   .on('receipt', receipt => {
+    //     this.getPetInfo();
+    //   })
+    //   .on('error', () => {
+    //     alert('Transaction failed');
+    //     this.setState({ action: PetAction.DEFAULT });
+    //     this.action();
+    //   });
+
+    await store.dispatch(
+      actions.savingMoney(this.state.petInstance, this.props.match.params.address, value)
+    );
   };
 
-  withDraw = async (value) => {
+  withDraw = async value => {
     let amount = Math.ceil((this.state.providentFund * value) / 100);
     let PetInstance = this.state.petInstance;
     await PetInstance.methods
       .withdrawMoney(amount)
       .send({ from: this.props.tomo.account })
-      .on('transactionHash', (hash) => {
+      .on('transactionHash', hash => {
         this.setState({ action: PetAction.WITHDRAW });
         this.action();
       })
-      .on('receipt', (receipt) => {
+      .on('receipt', receipt => {
         this.getPetInfo();
       })
       .on('error', () => {
@@ -216,14 +220,14 @@ class PetDetail extends Component {
     this.setState({
       feed: true,
       feedButtonColor: 'success',
-      withDrawButtonColor: 'secondary'
+      withDrawButtonColor: 'secondary',
     });
   };
   handleWithdrawClick = () => {
     this.setState({
       feed: false,
       withDrawButtonColor: 'danger',
-      feedButtonColor: 'secondary'
+      feedButtonColor: 'secondary',
     });
   };
 
@@ -268,7 +272,7 @@ class PetDetail extends Component {
             </Row>
             <Row>
               {this.state.feed
-                ? petFood.map((item) => (
+                ? petFood.map(item => (
                     <Col
                       xs='4'
                       className='z-index-1000'
@@ -278,7 +282,7 @@ class PetDetail extends Component {
                       <Food item={item} />
                     </Col>
                   ))
-                : withDraw.map((item) => (
+                : withDraw.map(item => (
                     <Col
                       xs='4'
                       className='z-index-1000'
@@ -323,10 +327,10 @@ class PetDetail extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     harmony: state.harmony,
-    petsAddress: state.harmony.petsAddress
+    petsAddress: state.harmony.petsAddress,
   };
 };
 

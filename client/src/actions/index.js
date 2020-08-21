@@ -7,14 +7,14 @@ const GAS_LIMIT = 6721900;
 const GAS_PRICE = 1000000000;
 const options = {
   gasPrice: GAS_PRICE,
-  gasLimit: GAS_LIMIT
+  gasLimit: GAS_LIMIT,
 };
 const hmy = new Harmony('https://api.s0.b.hmny.io', {
   chainType: ChainType.Harmony,
-  chainId: ChainID.HmyTestnet
+  chainId: ChainID.HmyTestnet,
 });
 
-export const loadWallet = () => async (dispatch) => {
+export const loadWallet = () => async dispatch => {
   let mathwallet = window.harmony;
   const session = localStorage.getItem('harmony_session');
   const sessionObj = JSON.parse(session);
@@ -22,7 +22,7 @@ export const loadWallet = () => async (dispatch) => {
     await dispatch({
       type: SIGN_IN_WALLET,
       account: sessionObj.account,
-      mathwallet
+      mathwallet,
     });
     await dispatch(instantiateContracts());
     await dispatch(getAllPets());
@@ -30,15 +30,15 @@ export const loadWallet = () => async (dispatch) => {
 };
 
 export const SIGN_IN_WALLET = 'SIGN_IN_WALLET';
-export const signInWallet = () => async (dispatch) => {
+export const signInWallet = () => async dispatch => {
   let isMathWallet = window.harmony && window.harmony.isMathWallet;
   if (isMathWallet) {
     let mathwallet = window.harmony;
-    mathwallet.getAccount().then(async (account) => {
+    mathwallet.getAccount().then(async account => {
       dispatch({
         type: SIGN_IN_WALLET,
         account,
-        mathwallet
+        mathwallet,
       });
       syncLocalStorage(account, 'mathWallet');
       await dispatch(instantiateContracts());
@@ -48,14 +48,14 @@ export const signInWallet = () => async (dispatch) => {
 };
 
 export const SIGN_OUT = 'SIGN_OUT';
-export const signOut = () => (dispatch) => {
+export const signOut = () => dispatch => {
   let isMathWallet = window.harmony && window.harmony.isMathWallet;
   if (isMathWallet) {
     let mathwallet = window.harmony;
     mathwallet.forgetIdentity().then(() => {
       dispatch({
         type: SIGN_OUT,
-        account: null
+        account: null,
       });
       syncLocalStorage(null, null);
     });
@@ -67,18 +67,18 @@ let syncLocalStorage = (account, sessionType) => {
     'harmony_session',
     JSON.stringify({
       account: account,
-      sessionType: sessionType
+      sessionType: sessionType,
     })
   );
 };
 
 export const INSTANTIATE_CONTRACT = 'INSTANTIATE_CONTRACT';
-export const instantiateContracts = () => async (dispatch) => {
+export const instantiateContracts = () => async dispatch => {
   let factoryAddress = Factory.networks[2].address;
   let factory = hmy.contracts.createContract(Factory.abi, factoryAddress);
   dispatch({
     type: INSTANTIATE_CONTRACT,
-    factory
+    factory,
   });
 };
 
@@ -99,7 +99,7 @@ export const getAllPets = () => async (dispatch, getState) => {
       time: 0,
       targetFund: 0,
       duration: 0,
-      purpose: ''
+      purpose: '',
     };
     pet.instance = hmy.contracts.createContract(petWallet.abi, petArray[i]);
     let petInfo = await pet.instance.methods.getInformation().call(options);
@@ -115,9 +115,10 @@ export const getAllPets = () => async (dispatch, getState) => {
   dispatch({
     type: GET_ALL_PETS,
     pets: pets,
-    petsAddress: petArray
+    petsAddress: petArray,
   });
 };
+
 export const CREATE_NEW_PET = 'CREATE_NEW_PET';
 export const createNewPet = (petId, targetFund, duration, purpose) => async (
   dispatch,
@@ -130,7 +131,7 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
   return new Promise(async (resolve, reject) => {
     try {
       factory.wallet.defaultSigner = hmy.crypto.getAddress(account.address).checksum;
-      factory.wallet.signTransaction = async (tx) => {
+      factory.wallet.signTransaction = async tx => {
         try {
           tx.from = hmy.crypto.getAddress(account.address).checksum;
           const signTx = await window.harmony.signTransaction(tx);
@@ -146,7 +147,7 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
         .then(() => {
           window.location.href = `/mypets/${pets.length}`;
         })
-        .catch((e) => {
+        .catch(e => {
           console.log('Create pet action error', e);
         });
       resolve(res);
@@ -157,10 +158,37 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
   });
 };
 
+export const savingMoney = (petInstance, petsAddress, value) => async (dispatch, getState) => {
+  const state = getState();
+  const account = state.harmony.account;
+  return new Promise(async (resolve, reject) => {
+    try {
+      petInstance.wallet.defaultSigner = hmy.crypto.getAddress(account.address).checksum;
+      petInstance.wallet.signTransaction = async tx => {
+        try {
+          tx.from = hmy.crypto.getAddress(account.address).checksum;
+          const signTx = await window.harmony.signTransaction(tx);
+          return signTx;
+        } catch (e) {
+          console.error(e);
+          reject(e);
+        }
+      };
+      const res = await petInstance.methods
+        .savingMoney(value)
+        .send({ ...options, value: value * 10 ** 18 });
+      resolve(res);
+    } catch (e) {
+      console.error(e);
+      reject(e);
+    }
+  });
+};
+
 export const UPDATE_BALANCE = 'UPDATE_BALANCE';
-export const updateBalance = (balance) => async (dispatch, getState) => {
+export const updateBalance = balance => async (dispatch, getState) => {
   dispatch({
     type: UPDATE_BALANCE,
-    balance
+    balance,
   });
 };

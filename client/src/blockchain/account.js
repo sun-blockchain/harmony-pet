@@ -1,4 +1,11 @@
 const axios = require('axios');
+const { Harmony } = require('@harmony-js/core');
+const { ChainID, ChainType } = require('@harmony-js/utils');
+
+const hmy = new Harmony('https://api.s0.b.hmny.io', {
+  chainType: ChainType.Harmony,
+  chainId: ChainID.HmyTestnet,
+});
 
 exports.getBalance = async function (address) {
   try {
@@ -27,4 +34,7 @@ exports.getBalance = async function (address) {
   }
 };
 
-this.getBalance('one12j4ycvnta3l68ep28lpe73n20wx470yfzq9uf3');
+exports.getEthereumAddress = async function (oneAddress) {
+  let address = await hmy.crypto.getAddress(oneAddress).checksum;
+  return address;
+};

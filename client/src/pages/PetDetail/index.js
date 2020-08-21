@@ -16,6 +16,18 @@ import './index.css';
 import { petFood } from 'constants/PetFood';
 import { withDraw } from 'constants/Petwithdraw';
 import { Link } from 'react-router-dom';
+import { Harmony } from '@harmony-js/core';
+import { ChainID, ChainType } from '@harmony-js/utils';
+const hmy = new Harmony('https://api.s0.b.hmny.io', {
+  chainType: ChainType.Harmony,
+  chainId: ChainID.HmyTestnet
+});
+const GAS_LIMIT = 6721900;
+const GAS_PRICE = 1000000000;
+const options = {
+  gasPrice: GAS_PRICE,
+  gasLimit: GAS_LIMIT
+};
 
 class PetDetail extends Component {
   constructor() {
@@ -45,17 +57,14 @@ class PetDetail extends Component {
   }
 
   async componentDidMount() {
-    if (!window.web3) return;
-    await store.dispatch(actions.getAllPetsAddress());
+    await store.dispatch(actions.loadWallet());
     let petAddress;
     if (this.props.match.params.index) {
       petAddress = this.props.petsAddress[this.props.match.params.index];
     } else {
       petAddress = this.props.match.params.address;
     }
-    let PetInstance = new this.props.tomo.web3.eth.Contract(petWallet.abi, petAddress, {
-      transactionConfirmationBlocks: 1
-    });
+    let PetInstance = hmy.contracts.createContract(petWallet.abi, petAddress);
     this.stage = new createjs.Stage('canvas');
     var divcanvas = document.getElementById('box-canvas');
 
@@ -70,7 +79,9 @@ class PetDetail extends Component {
   }
 
   async getPetInfo() {
-    let petInfo = Object.values(await this.state.petInstance.methods.getInformation().call());
+    let petInfo = Object.values(
+      await this.state.petInstance.methods.getInformation().call(options)
+    );
     let [type, providentFund, growthTime, targetFund, duration] = [
       parseInt(petInfo[0]),
       parseInt(petInfo[1]),
@@ -314,8 +325,8 @@ class PetDetail extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tomo: state.tomo,
-    petsAddress: state.tomo.petsAddress
+    harmony: state.harmony,
+    petsAddress: state.harmony.petsAddress
   };
 };
 

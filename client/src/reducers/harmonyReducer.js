@@ -31,11 +31,7 @@ const reducer = (state = initialState, action) => {
     case actions.GET_ALL_PETS:
       return {
         ...state,
-        pets: action.pets
-      };
-    case actions.GET_ALL_PETS_ADDRESS:
-      return {
-        ...state,
+        pets: action.pets,
         petsAddress: action.petsAddress
       };
     case actions.UPDATE_BALANCE:

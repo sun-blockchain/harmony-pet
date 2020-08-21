@@ -114,21 +114,10 @@ export const getAllPets = () => async (dispatch, getState) => {
   }
   dispatch({
     type: GET_ALL_PETS,
-    pets
+    pets: pets,
+    petsAddress: petArray
   });
 };
-export const GET_ALL_PETS_ADDRESS = 'GET_ALL_PETS_ADDRESS';
-export const getAllPetsAddress = () => async (dispatch, getState) => {
-  const state = getState();
-  const factory = state.tomo.factory;
-  const account = state.tomo.account;
-  let petsAddress = await factory.methods.getAllPetAddressOf(account).call({ from: account });
-  dispatch({
-    type: GET_ALL_PETS_ADDRESS,
-    petsAddress
-  });
-};
-
 export const CREATE_NEW_PET = 'CREATE_NEW_PET';
 export const createNewPet = (petId, targetFund, duration, purpose) => async (
   dispatch,

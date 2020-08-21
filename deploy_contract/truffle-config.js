@@ -18,6 +18,7 @@ gasLimit = process.env.GAS_LIMIT;
 gasPrice = process.env.GAS_PRICE;
 
 module.exports = {
+  contracts_build_directory: '../client/src/contracts',
   networks: {
     local: {
       network_id: '2', // Any network (default: none)
@@ -31,7 +32,7 @@ module.exports = {
         const newAcc = truffleProvider.addByPrivateKey(local_private_key);
         truffleProvider.setSigner(newAcc);
         return truffleProvider;
-      },
+      }
     },
     testnet: {
       network_id: '2', // Any network (default: none)
@@ -45,7 +46,7 @@ module.exports = {
         const newAcc = truffleProvider.addByPrivateKey(testnet_private_key);
         truffleProvider.setSigner(newAcc);
         return truffleProvider;
-      },
+      }
     },
     mainnet0: {
       network_id: '1', // Any network (default: none)
@@ -59,8 +60,8 @@ module.exports = {
         const newAcc = truffleProvider.addByPrivateKey(mainnet_private_key);
         truffleProvider.setSigner(newAcc);
         return truffleProvider;
-      },
-    },
+      }
+    }
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -71,7 +72,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: '0.5.8',
-    },
-  },
+      version: '0.5.8'
+    }
+  }
 };

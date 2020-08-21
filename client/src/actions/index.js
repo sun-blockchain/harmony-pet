@@ -1,9 +1,9 @@
 import Factory from 'contracts/PetWalletFactory.json';
-// import petWallet from 'contracts/PetWallet.json';
+import petWallet from 'contracts/PetWallet.json';
 import { Harmony } from '@harmony-js/core';
 import { ChainID, ChainType } from '@harmony-js/utils';
 
-const GAS_LIMIT = 103802;
+const GAS_LIMIT = 6721900;
 const GAS_PRICE = 1000000000;
 const options = {
   gasPrice: GAS_PRICE,
@@ -18,10 +18,10 @@ export const loadWallet = () => async (dispatch) => {
   let mathwallet = window.harmony;
   const session = localStorage.getItem('harmony_session');
   const sessionObj = JSON.parse(session);
-  if (sessionObj && sessionObj.address) {
+  if (sessionObj && sessionObj.account) {
     await dispatch({
       type: SIGN_IN_WALLET,
-      account: sessionObj.address,
+      account: sessionObj.account,
       mathwallet
     });
     await dispatch(instantiateContracts());
@@ -62,11 +62,11 @@ export const signOut = () => (dispatch) => {
   }
 };
 
-let syncLocalStorage = (address, sessionType) => {
+let syncLocalStorage = (account, sessionType) => {
   localStorage.setItem(
     'harmony_session',
     JSON.stringify({
-      address: address,
+      account: account,
       sessionType: sessionType
     })
   );
@@ -90,33 +90,31 @@ export const getAllPets = () => async (dispatch, getState) => {
   let petArray = await factory.methods
     .getAllPetAddressOf(hmy.crypto.getAddress(account.address).checksum)
     .call(options);
-  // const pets = [];
-  // for (let i = 0; i < petArray.length; i++) {
-  //   let pet = {
-  //     instance: null,
-  //     id: 0,
-  //     amount: 0,
-  //     time: 0,
-  //     targetFund: 0,
-  //     duration: 0,
-  //     purpose: ''
-  //   };
-  //   pet.instance = new web3.eth.Contract(petWallet.abi, petArray[i], {
-  //     transactionConfirmationBlocks: 1
-  //   });
-  //   let petInfo = await pet.instance.methods.getInformation().call();
-  //   pet.id = petInfo[0];
-  //   pet.amount = petInfo[1];
-  //   pet.time = petInfo[2];
-  //   pet.targetFund = petInfo[3];
-  //   pet.duration = petInfo[4];
-  //   pet.purpose = petInfo[5];
-  //   pet.address = petArray[i];
-  //   pets.push(pet);
-  // }
+  const pets = [];
+  for (let i = 0; i < petArray.length; i++) {
+    let pet = {
+      instance: null,
+      id: 0,
+      amount: 0,
+      time: 0,
+      targetFund: 0,
+      duration: 0,
+      purpose: ''
+    };
+    pet.instance = hmy.contracts.createContract(petWallet.abi, petArray[i]);
+    let petInfo = await pet.instance.methods.getInformation().call(options);
+    pet.id = petInfo[0];
+    pet.amount = petInfo[1];
+    pet.time = petInfo[2];
+    pet.targetFund = petInfo[3];
+    pet.duration = petInfo[4];
+    pet.purpose = petInfo[5];
+    pet.address = petArray[i];
+    pets.push(pet);
+  }
   dispatch({
     type: GET_ALL_PETS,
-    pets: petArray
+    pets
   });
 };
 export const GET_ALL_PETS_ADDRESS = 'GET_ALL_PETS_ADDRESS';
@@ -137,18 +135,37 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
   getState
 ) => {
   const state = getState();
-  const factory = state.tomo.factory;
-  const account = state.tomo.account;
-  const pets = state.tomo.pets;
-  await factory.methods
-    .create(petId, targetFund, duration, purpose)
-    .send({ from: account })
-    .then(() => {
-      window.location.href = `/mypets/${pets.length}`;
-    })
-    .catch((e) => {
-      console.log('Create pet action error', e);
-    });
+  const factory = state.harmony.factory;
+  const account = state.harmony.account;
+  const pets = state.harmony.pets;
+  return new Promise(async (resolve, reject) => {
+    try {
+      factory.wallet.defaultSigner = hmy.crypto.getAddress(account.address).checksum;
+      factory.wallet.signTransaction = async (tx) => {
+        try {
+          tx.from = hmy.crypto.getAddress(account.address).checksum;
+          const signTx = await window.harmony.signTransaction(tx);
+          return signTx;
+        } catch (e) {
+          console.error(e);
+          reject(e);
+        }
+      };
+      const res = await factory.methods
+        .create(petId, targetFund, duration, purpose)
+        .send(options)
+        .then(() => {
+          window.location.href = `/mypets/${pets.length}`;
+        })
+        .catch((e) => {
+          console.log('Create pet action error', e);
+        });
+      resolve(res);
+    } catch (e) {
+      console.error(e);
+      reject(e);
+    }
+  });
 };
 
 export const UPDATE_BALANCE = 'UPDATE_BALANCE';

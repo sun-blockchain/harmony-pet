@@ -24,14 +24,14 @@ class AccountModal extends React.Component {
             <div className='qr-code'>
               <QRCode
                 renderAs='svg'
-                value={this.props.account}
+                value={this.props.account.address}
                 size={250}
                 level={'H'}
                 includeMargin={true}
               />
             </div>
             <div className='account-address' title='Copy to clipboard'>
-              Address : {this.props.account}
+              Address : {this.props.account.address}
             </div>
           </ModalBody>
         </Modal>

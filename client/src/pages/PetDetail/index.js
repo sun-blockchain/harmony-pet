@@ -124,11 +124,11 @@ class PetDetail extends Component {
     }
   }
 
-  feedPet = async (value) => {
+  feedPet = async value => {
     let PetInstance = this.state.petInstance;
     try {
       PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(this.props.account.address).checksum;
-      PetInstance.wallet.signTransaction = async (tx) => {
+      PetInstance.wallet.signTransaction = async tx => {
         try {
           tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
           const signTx = await window.harmony.signTransaction(tx);
@@ -151,24 +151,32 @@ class PetDetail extends Component {
     }
   };
 
-  withDraw = async (value) => {
+  withDraw = async value => {
     let amount = Math.ceil((this.state.providentFund * value) / 100);
     let PetInstance = this.state.petInstance;
-    await PetInstance.methods
-      .withdrawMoney(amount)
-      .send({ from: this.props.tomo.account })
-      .on('transactionHash', (hash) => {
-        this.setState({ action: PetAction.WITHDRAW });
-        this.action();
-      })
-      .on('receipt', (receipt) => {
-        this.getPetInfo();
-      })
-      .on('error', () => {
-        alert('Transaction failed');
-        this.setState({ action: PetAction.DEFAULT });
-        this.action();
-      });
+    try {
+      PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(this.props.account.address).checksum;
+      PetInstance.wallet.signTransaction = async tx => {
+        try {
+          tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
+          const signTx = await window.harmony.signTransaction(tx);
+          return signTx;
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      await PetInstance.methods
+        .withdrawMoney(amount)
+        .send({ ...options })
+        .then(() => {
+          this.setState({
+            action: PetAction.WITHDRAW
+          });
+          this.action();
+        });
+    } catch (e) {
+      console.error(e);
+    }
   };
   action() {
     let divcanvas = document.getElementById('box-canvas');
@@ -274,7 +282,7 @@ class PetDetail extends Component {
             </Row>
             <Row>
               {this.state.feed
-                ? petFood.map((item) => (
+                ? petFood.map(item => (
                     <Col
                       xs='4'
                       className='z-index-1000'
@@ -284,7 +292,7 @@ class PetDetail extends Component {
                       <Food item={item} />
                     </Col>
                   ))
-                : withDraw.map((item) => (
+                : withDraw.map(item => (
                     <Col
                       xs='4'
                       className='z-index-1000'
@@ -329,7 +337,7 @@ class PetDetail extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     harmony: state.harmony,
     petsAddress: state.harmony.petsAddress,

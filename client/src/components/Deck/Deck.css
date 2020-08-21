@@ -144,6 +144,10 @@
   padding-top: 2%;
 }
 
+.avatar:hover {
+  cursor: pointer;
+}
+
 /* Bar menu bottom dạng mobile  */
 
 .box {

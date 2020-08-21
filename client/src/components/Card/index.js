@@ -22,7 +22,7 @@ const PetCard = (props) => {
               color='success'
               value={(props.pet.amount / props.pet.targetFund) * 100}
             >
-              Size: {props.pet.amount} / {props.pet.targetFund} Tomo
+              Size: {props.pet.amount} / {props.pet.targetFund} ONE
             </Progress>
           </CardBody>
         </Card>

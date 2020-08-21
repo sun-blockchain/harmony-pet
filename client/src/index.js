@@ -18,6 +18,9 @@ ReactDOM.render(
 
 window.addEventListener('load', async () => {
   store.dispatch(actions.loadWallet());
+  setInterval(() => {
+    store.dispatch(actions.updateBalance());
+  }, 1000);
 });
 
 serviceWorker.unregister();

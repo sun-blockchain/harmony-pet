@@ -107,7 +107,7 @@ contract('Testing PetWallet contract', async ([_, owner, owner1]) => {
     it('providentFund', async () => {
       await petWallet.withdrawMoney(1, { from: owner });
       let providentFund = await petWallet.providentFund();
-      assert(providentFund.toNumber() == 1, 'providentFund should be decrease 1 tomo');
+      assert(providentFund.toNumber() == 1, 'providentFund should be decrease 1 one');
     });
   });
 });

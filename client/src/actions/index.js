@@ -160,7 +160,7 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
 export const UPDATE_BALANCE = 'UPDATE_BALANCE';
 export const updateBalance = (balance) => async (dispatch, getState) => {
   let state = getState();
-  const address = state.harmony.account.address;
+  const address = state.harmony.account ? state.harmony.account.address : null;
   if (address) {
     let res = await hmy.blockchain.getBalance({ address: address });
     let balance = parseFloat(fromWei(hexToNumber(res.result), Units.one)).toFixed(2);

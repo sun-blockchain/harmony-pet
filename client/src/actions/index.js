@@ -1,7 +1,7 @@
 import Factory from 'contracts/PetWalletFactory.json';
 import petWallet from 'contracts/PetWallet.json';
 import { Harmony } from '@harmony-js/core';
-import { ChainID, ChainType } from '@harmony-js/utils';
+import { ChainID, ChainType, fromWei, hexToNumber, Units } from '@harmony-js/utils';
 
 const GAS_LIMIT = 6721900;
 const GAS_PRICE = 1000000000;
@@ -123,10 +123,10 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
   dispatch,
   getState
 ) => {
-  const state = getState();
+  let state = getState();
   const factory = state.harmony.factory;
   const account = state.harmony.account;
-  const pets = state.harmony.pets;
+  let pets = state.harmony.pets;
   return new Promise(async (resolve, reject) => {
     try {
       factory.wallet.defaultSigner = hmy.crypto.getAddress(account.address).checksum;
@@ -159,8 +159,14 @@ export const createNewPet = (petId, targetFund, duration, purpose) => async (
 
 export const UPDATE_BALANCE = 'UPDATE_BALANCE';
 export const updateBalance = (balance) => async (dispatch, getState) => {
-  dispatch({
-    type: UPDATE_BALANCE,
-    balance
-  });
+  let state = getState();
+  const address = state.harmony.account.address;
+  if (address) {
+    let res = await hmy.blockchain.getBalance({ address: address });
+    let balance = parseFloat(fromWei(hexToNumber(res.result), Units.one)).toFixed(2);
+    dispatch({
+      type: UPDATE_BALANCE,
+      balance
+    });
+  }
 };

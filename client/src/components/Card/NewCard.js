@@ -19,7 +19,7 @@ class NewCard extends React.Component {
             <p>
               <span>Fund: </span>
               <span>{this.props.targetFund}</span>
-              <span> TOMO</span>
+              <span> ONE</span>
             </p>
             <p>
               <span>Duration: </span>

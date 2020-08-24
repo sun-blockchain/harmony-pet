@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Spinner } from 'reactstrap';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ import { withDraw } from 'constants/Petwithdraw';
 import { Link } from 'react-router-dom';
 import { Harmony } from '@harmony-js/core';
 import { ChainID, ChainType } from '@harmony-js/utils';
+import { toast } from 'react-toastify';
 const hmy = new Harmony('https://api.s0.b.hmny.io', {
   chainType: ChainType.Harmony,
   chainId: ChainID.HmyTestnet
@@ -47,7 +48,8 @@ class PetDetail extends Component {
       yCoordinate: (window.innerHeight * 2) / 3,
       feed: true,
       feedButtonColor: 'success',
-      withDrawButtonColor: 'secondary'
+      withDrawButtonColor: 'secondary',
+      loading: false
     };
     this.canvas = React.createRef();
     this.tick = this.tick.bind(this);
@@ -124,58 +126,120 @@ class PetDetail extends Component {
     }
   }
 
-  feedPet = async value => {
+  feedPet = async (value) => {
     let PetInstance = this.state.petInstance;
-    try {
-      PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(this.props.account.address).checksum;
-      PetInstance.wallet.signTransaction = async tx => {
-        try {
-          tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
-          const signTx = await window.harmony.signTransaction(tx);
-          return signTx;
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      await PetInstance.methods
-        .savingMoney(value)
-        .send({ ...options, value: value * 10 ** 18 })
-        .then(() => {
-          this.setState({
-            action: PetAction.FEED
+    if (parseFloat(this.props.balance) > parseFloat(value)) {
+      this.setState({
+        loading: true
+      });
+      try {
+        PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(
+          this.props.account.address
+        ).checksum;
+        PetInstance.wallet.signTransaction = async (tx) => {
+          try {
+            tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
+            const signTx = await window.harmony.signTransaction(tx);
+            return signTx;
+          } catch (e) {
+            console.log(e);
+            this.setState({
+              loading: false
+            });
+          }
+        };
+        await PetInstance.methods
+          .savingMoney(value)
+          .send({ ...options, value: value * 10 ** 18 })
+          .then((e) => {
+            this.setState({
+              action: PetAction.FEED,
+              loading: false
+            });
+            this.getPetInfo();
+            this.action();
+            toast.success('🦄 Feed Success!', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined
+            });
           });
-          this.action();
-        });
-    } catch (e) {
-      console.error(e);
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      toast.error('Not enough money!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
     }
   };
 
-  withDraw = async value => {
+  withDraw = async (value) => {
     let amount = Math.ceil((this.state.providentFund * value) / 100);
     let PetInstance = this.state.petInstance;
-    try {
-      PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(this.props.account.address).checksum;
-      PetInstance.wallet.signTransaction = async tx => {
-        try {
-          tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
-          const signTx = await window.harmony.signTransaction(tx);
-          return signTx;
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      await PetInstance.methods
-        .withdrawMoney(amount)
-        .send({ ...options })
-        .then(() => {
-          this.setState({
-            action: PetAction.WITHDRAW
+    if (parseInt(this.state.providentFund) > 0) {
+      this.setState({
+        loading: true
+      });
+      try {
+        PetInstance.wallet.defaultSigner = hmy.crypto.getAddress(
+          this.props.account.address
+        ).checksum;
+        PetInstance.wallet.signTransaction = async (tx) => {
+          try {
+            tx.from = hmy.crypto.getAddress(this.props.account.address).checksum;
+            const signTx = await window.harmony.signTransaction(tx);
+            return signTx;
+          } catch (e) {
+            console.log(e);
+            this.setState({
+              loading: false
+            });
+          }
+        };
+        await PetInstance.methods
+          .withdrawMoney(amount)
+          .send({ ...options })
+          .then(() => {
+            this.setState({
+              action: PetAction.WITHDRAW,
+              loading: false
+            });
+            this.getPetInfo();
+            this.action();
+            toast.success('🦄 Withdraw Success!', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined
+            });
           });
-          this.action();
-        });
-    } catch (e) {
-      console.error(e);
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      toast.error('Amount pet not enough!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
     }
   };
   action() {
@@ -246,6 +310,13 @@ class PetDetail extends Component {
       <div className='view'>
         <div className='row justify-content-md-center '>
           <div id='box-canvas'>
+            {this.state.loading ? (
+              <div className='modal fade show loading'>
+                <Spinner color='primary' />
+              </div>
+            ) : (
+              ''
+            )}
             <Row>
               <Col>
                 <div className='fund_tracking'>
@@ -282,7 +353,7 @@ class PetDetail extends Component {
             </Row>
             <Row>
               {this.state.feed
-                ? petFood.map(item => (
+                ? petFood.map((item) => (
                     <Col
                       xs='4'
                       className='z-index-1000'
@@ -292,7 +363,7 @@ class PetDetail extends Component {
                       <Food item={item} />
                     </Col>
                   ))
-                : withDraw.map(item => (
+                : withDraw.map((item) => (
                     <Col
                       xs='4'
                       className='z-index-1000'
@@ -337,11 +408,12 @@ class PetDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     harmony: state.harmony,
     petsAddress: state.harmony.petsAddress,
-    account: state.harmony.account
+    account: state.harmony.account,
+    balance: state.harmony.balance
   };
 };
 

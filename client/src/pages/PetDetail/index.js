@@ -19,9 +19,9 @@ import { Link } from 'react-router-dom';
 import { Harmony } from '@harmony-js/core';
 import { ChainID, ChainType } from '@harmony-js/utils';
 import { toast } from 'react-toastify';
-const hmy = new Harmony('https://api.s0.b.hmny.io', {
+const hmy = new Harmony('https://api.s0.t.hmny.io', {
   chainType: ChainType.Harmony,
-  chainId: ChainID.HmyTestnet
+  chainId: ChainID.HmyMainnet
 });
 const GAS_LIMIT = 6721900;
 const GAS_PRICE = 1000000000;

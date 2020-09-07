@@ -9,9 +9,9 @@ const options = {
   gasPrice: GAS_PRICE,
   gasLimit: GAS_LIMIT
 };
-const hmy = new Harmony('https://api.s0.b.hmny.io', {
+const hmy = new Harmony('https://api.s0.t.hmny.io', {
   chainType: ChainType.Harmony,
-  chainId: ChainID.HmyTestnet
+  chainId: ChainID.HmyMainnet
 });
 
 export const loadWallet = () => async (dispatch) => {
@@ -74,7 +74,7 @@ let syncLocalStorage = (account, sessionType) => {
 
 export const INSTANTIATE_CONTRACT = 'INSTANTIATE_CONTRACT';
 export const instantiateContracts = () => async (dispatch) => {
-  let factoryAddress = Factory.networks[2].address;
+  let factoryAddress = Factory.networks[1].address;
   let factory = hmy.contracts.createContract(Factory.abi, factoryAddress);
   dispatch({
     type: INSTANTIATE_CONTRACT,
